@@ -1,0 +1,26 @@
+# secrets
+.env
+.env.local
+
+# dependencies
+node_modules/
+
+# build / output
+dist/
+build/
+
+# data exports (runtime artifacts)
+exports/
+
+# IDE / workspace
+.trae/
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+npm-debug.log*
