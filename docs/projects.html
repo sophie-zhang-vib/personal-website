@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/style.css" />
 </head>
@@ -38,66 +38,89 @@
     <section class="page-hero">
       <span class="eyebrow reveal d-1">Projects</span>
       <h1 class="reveal d-2">Small things, made with care</h1>
-      <p class="reveal d-3">New projects are on the way. In the meantime, here's a little to-do list to keep your day in order.</p>
+      <p class="reveal d-3">A selection of projects I've built — each one a chance to learn something new and make something useful.</p>
     </section>
 
-    <!-- To-Do List app -->
+    <!-- Project grid -->
     <section class="section" style="padding-top: 1rem;">
-      <div class="todo-app">
-        <div class="todo-head">
-          <span class="eyebrow">A little helper</span>
-          <h2>To-Do List</h2>
-          <p>Add a task, pick a date, and check things off. It syncs to a Supabase project, so it stays with you across devices.</p>
-        </div>
+      <div class="project-grid">
 
-        <form class="todo-form" id="todoForm">
-          <input type="text" id="todoInput" placeholder="Add a task..." required maxlength="160" />
-          <input type="date" id="todoDate" aria-label="Task date" />
-          <button type="submit" class="btn btn-primary">Add</button>
-        </form>
+        <article class="project-card">
+          <div class="project-cover">
+            <img
+              alt="Quiet Reader app preview"
+              src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=minimal%20calm%20reading%20app%20interface%20on%20tablet%2C%20soft%20cream%20background%2C%20serif%20typography%2C%20warm%20natural%20lighting%2C%20clean%20modern%20design%2C%20focus%20mode&image_size=landscape_16_9"
+            />
+          </div>
+          <div class="project-body">
+            <h3>Quiet Reader</h3>
+            <p>An offline-first reading app with a calm, distraction-free interface. Syncs across devices and remembers exactly where you left off.</p>
+            <div class="project-tags">
+              <span class="chip">React</span>
+              <span class="chip">IndexedDB</span>
+              <span class="chip">PWA</span>
+            </div>
+            <a href="#" class="project-link">View project <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
 
-        <ul class="todo-list" id="todoList"></ul>
+        <article class="project-card">
+          <div class="project-cover">
+            <img
+              alt="Weather widget preview"
+              src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=friendly%20weather%20widget%20dashboard%2C%20soft%20coral%20and%20sage%20green%20colors%2C%20clean%20minimal%20design%2C%20clouds%20and%20sun%20illustrations%2C%20warm%20modern%20ui&image_size=landscape_16_9"
+            />
+          </div>
+          <div class="project-body">
+            <h3>Little Weather</h3>
+            <p>A gentle weather widget that shows just what you need — today's forecast, a friendly note about the sky, and when to grab an umbrella.</p>
+            <div class="project-tags">
+              <span class="chip">JavaScript</span>
+              <span class="chip">OpenWeather API</span>
+              <span class="chip">CSS</span>
+            </div>
+            <a href="#" class="project-link">View project <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
 
-        <div class="todo-empty" id="todoEmpty">
-          <span class="todo-empty-emoji" aria-hidden="true">&#127807;</span>
-          <p>Nothing to do yet. Add your first task above.</p>
-        </div>
+        <article class="project-card">
+          <div class="project-cover">
+            <img
+              alt="Habit tracker preview"
+              src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=warm%20habit%20tracker%20app%20interface%2C%20calendar%20grid%20with%20soft%20coral%20checkmarks%2C%20cream%20background%2C%20friendly%20modern%20design%2C%20clean%20typography&image_size=landscape_16_9"
+            />
+          </div>
+          <div class="project-body">
+            <h3>Streak Keeper</h3>
+            <p>A low-pressure habit tracker that celebrates small wins. No guilt trips — just gentle reminders and a warm pat on the back when you show up.</p>
+            <div class="project-tags">
+              <span class="chip">Vue</span>
+              <span class="chip">Supabase</span>
+              <span class="chip">Tailwind</span>
+            </div>
+            <a href="#" class="project-link">View project <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
 
-        <div class="todo-footer" id="todoFooter" hidden>
-          <span id="todoCount">0 of 0 left</span>
-          <span id="todoStatus" class="todo-status" data-state="local">Local</span>
-          <button type="button" class="todo-clear" id="todoClear">Clear done</button>
-        </div>
-      </div>
-    </section>
+        <article class="project-card">
+          <div class="project-cover">
+            <img
+              alt="Recipe collection app preview"
+              src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cozy%20recipe%20collection%20app%2C%20warm%20kitchen%20aesthetic%2C%20soft%20cream%20and%20sage%20colors%2C%20clean%20card%20layout%2C%20food%20photography%20style%2C%20modern%20ui&image_size=landscape_16_9"
+            />
+          </div>
+          <div class="project-body">
+            <h3>Family Recipes</h3>
+            <p>A digital recipe box for family favorites. Save handwritten notes, tag by occasion, and never lose Grandma's cookie recipe again.</p>
+            <div class="project-tags">
+              <span class="chip">Node</span>
+              <span class="chip">Express</span>
+              <span class="chip">SQLite</span>
+            </div>
+            <a href="#" class="project-link">View project <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
 
-    <!-- First-Year Friend assistant -->
-    <section class="section" id="assistantSection">
-      <div class="assistant-app">
-        <div class="assistant-head">
-          <span class="eyebrow">First-Year Friend</span>
-          <h2>Plan your first year with me</h2>
-          <p>A warm, practical helper for courses, time, money, friends, getting involved, health, and internships. Not a substitute for official advisors, doctors, or counselors.</p>
-        </div>
-
-        <div class="assistant-chips" id="assistantChips" aria-label="Pick a topic to start">
-          <button type="button" class="chip" data-topic="courses">Choosing courses</button>
-          <button type="button" class="chip" data-topic="time">Time management</button>
-          <button type="button" class="chip" data-topic="budget">Budgeting</button>
-          <button type="button" class="chip" data-topic="friends">Making friends</button>
-          <button type="button" class="chip" data-topic="involved">Getting involved</button>
-          <button type="button" class="chip" data-topic="health">Staying healthy</button>
-          <button type="button" class="chip" data-topic="internships">Internships</button>
-        </div>
-
-        <div class="assistant-chat" id="assistantChat" role="log" aria-live="polite" aria-label="Conversation with First-Year Friend"></div>
-
-        <form class="assistant-form" id="assistantForm">
-          <input type="text" id="assistantInput" placeholder="Ask me anything about first year..." autocomplete="off" required maxlength="300" />
-          <button type="submit" class="btn btn-primary" aria-label="Send">Send</button>
-        </form>
-
-        <p class="assistant-disclaimer">In a crisis, call or text <strong>988</strong> (US). For official requirements (graduation, visas, financial aid) or serious concerns (mental health, safety), contact your campus professional.</p>
       </div>
     </section>
   </main>
@@ -120,9 +143,5 @@
   </footer>
 
   <script src="assets/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/supabase-config.js"></script>
-  <script src="assets/todo.js"></script>
-  <script src="assets/assistant.js"></script>
 </body>
 </html>
