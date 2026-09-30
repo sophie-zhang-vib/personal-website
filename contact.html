@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alice Lee — Contact</title>
+  <meta name="description" content="Say hello to Alice Lee — the contact page for questions, hellos, and origami cranes." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">A</span>
+        <span>Alice Lee</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Page header -->
+    <section class="page-hero">
+      <span class="eyebrow reveal d-1">Contact</span>
+      <h1 class="reveal d-2">Say hello &#128075;</h1>
+      <p class="reveal d-3">Whether it's a question, a project idea, or just a friendly hello &mdash; I'd love to hear from you.</p>
+    </section>
+
+    <!-- Contact form + aside -->
+    <section class="section" style="padding-top: 1rem;">
+      <div class="contact-wrap">
+        <!-- Form -->
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+            &#127800; Thanks! Your message is on its way. I'll reply soon.
+          </div>
+
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Alex Rivera" required />
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me what's on your mind..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Send message</button>
+          <p class="form-note">This is a demo form &mdash; your message won't actually leave your browser. Use the links on the right to reach me for real.</p>
+        </form>
+
+        <!-- Aside -->
+        <aside class="contact-aside">
+          <h3>Other ways to reach me</h3>
+          <p>Prefer something more direct? Here's where to find me around the internet.</p>
+          <div class="social-list">
+            <a class="social-link" href="mailto:hello@jordanlee.dev">
+              <span class="social-emoji" aria-hidden="true">&#9993;&#65039;</span>
+              <span>Email</span>
+              <span class="social-handle">hello@jordanlee.dev</span>
+            </a>
+            <a class="social-link" href="https://github.com" target="_blank" rel="noopener">
+              <span class="social-emoji" aria-hidden="true">&#128187;</span>
+              <span>GitHub</span>
+              <span class="social-handle">@jordanlee</span>
+            </a>
+            <a class="social-link" href="https://linkedin.com" target="_blank" rel="noopener">
+              <span class="social-emoji" aria-hidden="true">&#129309;</span>
+              <span>LinkedIn</span>
+              <span class="social-handle">/in/jordanlee</span>
+            </a>
+            <a class="social-link" href="https://twitter.com" target="_blank" rel="noopener">
+              <span class="social-emoji" aria-hidden="true">&#128172;</span>
+              <span>Twitter</span>
+              <span class="social-handle">@jordanlee</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="fun-fact">
+        <span class="eyebrow">Fun fact</span>
+        <p>I reply to most messages within a day &mdash; unless I'm on a long walk. Then it might take two.</p>
+      </div>
+      <div class="footer-meta">
+        <p>&copy; <span id="year">2026</span> Alice Lee &middot;
+          <a href="index.html">Home</a> &middot;
+          <a href="resume.html">Resume</a> &middot;
+          <a href="projects.html">Projects</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

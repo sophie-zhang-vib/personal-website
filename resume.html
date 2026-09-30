@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alice Lee — Resume</title>
+  <meta name="description" content="The resume of Alice Lee — developer, writer, and tea drinker." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">A</span>
+        <span>Alice Lee</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="resume.html" class="active">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Page header -->
+    <section class="page-hero">
+      <span class="eyebrow reveal d-1">Resume</span>
+      <h1 class="reveal d-2">Work, learning &amp; the path so far</h1>
+      <p class="reveal d-3">A short, honest summary of where I've been and what I've picked up along the way.</p>
+    </section>
+
+    <!-- Summary -->
+    <section class="resume-block reveal d-2">
+      <span class="eyebrow">Summary</span>
+      <div class="summary-card">
+        <p>
+          I am a graduate student majoring in Digital Education at Xi'an Jiaotong-Liverpool
+          University (XJTLU), where I explore how technology can support better teaching and
+          learning. I am currently learning HTML, CSS, and JavaScript by building this personal
+          website as my first hands-on web project. I care about clear design and meaningful
+          learning experiences, and I am curious about opportunities in educational technology
+          and digital learning.
+        </p>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="resume-block">
+      <span class="eyebrow">Experience</span>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-role">Instructional Design Intern</div>
+            <div class="timeline-meta">
+              <span>EDU, XJTLU</span>
+              <span>Jul 2026 &mdash; Aug 2026</span>
+            </div>
+            <ul class="bullets">
+              <li>Supported the design and development of digital learning materials for university courses.</li>
+              <li>Helped organize learning activities and collected feedback from teachers and students to improve content.</li>
+              <li>Assisted in updating and maintaining online course resources on the learning platform.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-role">User Researcher</div>
+            <div class="timeline-meta">
+              <span>Baidu</span>
+              <span>May 2026 &mdash; Jun 2026</span>
+            </div>
+            <ul class="bullets">
+              <li>Conducted user interviews and usability testing to understand user needs and pain points.</li>
+              <li>Analyzed survey and usage data, and synthesized findings into research summaries.</li>
+              <li>Collaborated with product and design teams to turn user insights into improvement suggestions.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="resume-block">
+      <span class="eyebrow">Education</span>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-role">M.Sc. in Digital Education</div>
+            <div class="timeline-meta">
+              <span>Xi'an Jiaotong-Liverpool University (XJTLU)</span>
+              <span>2026 &mdash; 2028</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="resume-block">
+      <span class="eyebrow">Skills</span>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3><span aria-hidden="true">&#128187;</span> Languages</h3>
+          <div class="skill-chips">
+            <span class="chip">JavaScript</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">Python</span>
+            <span class="chip">SQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3><span aria-hidden="true">&#129518;</span> Tools &amp; frameworks</h3>
+          <div class="skill-chips">
+            <span class="chip">React</span>
+            <span class="chip">Vue</span>
+            <span class="chip">Node</span>
+            <span class="chip">Express</span>
+            <span class="chip">Tailwind</span>
+            <span class="chip">Vite</span>
+            <span class="chip">Git</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3><span aria-hidden="true">&#127795;</span> Soft skills</h3>
+          <div class="skill-chips">
+            <span class="chip">Clear writing</span>
+            <span class="chip">Mentoring</span>
+            <span class="chip">Accessibility</span>
+            <span class="chip">Curiosity</span>
+            <span class="chip">Calm under pressure</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="resume-actions">
+      <a href="#" class="btn btn-primary" id="downloadBtn">&#128190; Download resume</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="fun-fact">
+        <span class="eyebrow">Fun fact</span>
+        <p>My first website was a fan page for a local bakery. It had a guestbook and I checked it every day.</p>
+      </div>
+      <div class="footer-meta">
+        <p>&copy; <span id="year">2026</span> Alice Lee &middot;
+          <a href="index.html">Home</a> &middot;
+          <a href="projects.html">Projects</a> &middot;
+          <a href="contact.html">Contact</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

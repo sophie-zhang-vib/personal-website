@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alice Lee — Projects</title>
+  <meta name="description" content="A handful of small, thoughtful projects by Alice Lee." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">A</span>
+        <span>Alice Lee</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Page header -->
+    <section class="page-hero">
+      <span class="eyebrow reveal d-1">Projects</span>
+      <h1 class="reveal d-2">My To-Do List</h1>
+      <p class="reveal d-3">Pick a date, jot down a task, and keep track of what needs doing. Simple by design.</p>
+    </section>
+
+    <!-- To-Do App -->
+    <section class="todo-app reveal d-3" aria-label="To-do list">
+      <div class="todo-add">
+        <input type="date" id="todoDate" class="todo-date" aria-label="Due date" />
+        <div class="todo-emoji-wrap">
+          <button type="button" id="todoEmojiBtn" class="todo-emoji-btn" aria-label="Pick an emoji">📝</button>
+          <div id="todoEmojiPicker" class="todo-emoji-picker" hidden></div>
+        </div>
+        <input
+          type="text"
+          id="todoInput"
+          class="todo-input"
+          placeholder="What needs to be done?"
+          aria-label="Task description"
+          maxlength="140"
+        />
+        <button type="button" id="todoAddBtn" class="btn btn-primary todo-add-btn">Add</button>
+      </div>
+
+      <p id="todoCounter" class="todo-counter" aria-live="polite"></p>
+
+      <ul id="todoList" class="todo-list" aria-live="polite"></ul>
+
+      <p id="todoEmpty" class="todo-empty">No tasks yet — add your first one above.</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="fun-fact">
+        <span class="eyebrow">Fun fact</span>
+        <p>When I'm not shipping projects, I'm usually sketching them on the back of a napkin.</p>
+      </div>
+      <div class="footer-meta">
+        <p>&copy; <span id="year">2026</span> Alice Lee &middot;
+          <a href="index.html">Home</a> &middot;
+          <a href="resume.html">Resume</a> &middot;
+          <a href="contact.html">Contact</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>
