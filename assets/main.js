@@ -23,6 +23,31 @@
     });
   }
 
+  /* ---------- Sticky header: elevate after scrolling ---------- */
+  var nav = document.querySelector(".nav");
+
+  if (nav) {
+    var ticking = false;
+
+    function updateNav() {
+      nav.classList.toggle("scrolled", window.scrollY > 8);
+      ticking = false;
+    }
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!ticking) {
+          window.requestAnimationFrame(updateNav);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    updateNav();
+  }
+
   /* ---------- Current year in footer ---------- */
   var yearEl = document.getElementById("year");
   if (yearEl) {

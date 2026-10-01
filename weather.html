@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alice Lee — Weather App</title>
+  <meta name="description" content="A clean, simple weather app — enter a city to see current conditions, temperature, and an icon." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">A</span>
+        <span>Alice Lee</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Page header -->
+    <section class="page-hero">
+      <span class="eyebrow reveal d-1">Project</span>
+      <h1 class="reveal d-2">Weather App</h1>
+      <p class="reveal d-3">Enter a city to see the current temperature, conditions, and a matching icon.</p>
+    </section>
+
+    <!-- Weather App -->
+    <section class="weather-app reveal d-2" aria-label="Weather lookup">
+      <div class="weather-search">
+        <input
+          type="text"
+          id="weatherInput"
+          class="weather-input"
+          placeholder="Enter a city (e.g. Suzhou)"
+          aria-label="City name"
+          autocomplete="off"
+        />
+        <button type="button" id="weatherSearchBtn" class="btn btn-primary weather-search-btn">Search</button>
+      </div>
+
+      <div id="weatherResult" class="weather-result" aria-live="polite">
+        <p class="weather-hint">Type a city name and press Search or Enter.</p>
+      </div>
+    </section>
+
+    <div class="weather-back reveal d-3">
+      <a href="projects.html" class="project-link">&larr; Back to Projects</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="fun-fact">
+        <span class="eyebrow">Fun fact</span>
+        <p>I built this weather app to practice fetching real data from an API — it was my first one!</p>
+      </div>
+      <div class="footer-meta">
+        <p>&copy; <span id="year">2026</span> Alice Lee &middot;
+          <a href="index.html">Home</a> &middot;
+          <a href="resume.html">Resume</a> &middot;
+          <a href="projects.html">Projects</a> &middot;
+          <a href="contact.html">Contact</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var API_BASE = "https://uapis.cn/api/v1/misc/weather";
+      var input = document.getElementById("weatherInput");
+      var btn = document.getElementById("weatherSearchBtn");
+      var result = document.getElementById("weatherResult");
+
+      /* Common cities used for "did you mean" suggestions */
+      var CITIES = [
+        { en: "Beijing", zh: "北京" }, { en: "Shanghai", zh: "上海" },
+        { en: "Guangzhou", zh: "广州" }, { en: "Shenzhen", zh: "深圳" },
+        { en: "Chengdu", zh: "成都" }, { en: "Hangzhou", zh: "杭州" },
+        { en: "Suzhou", zh: "苏州" }, { en: "Nanjing", zh: "南京" },
+        { en: "Wuhan", zh: "武汉" }, { en: "Xi'an", zh: "西安" },
+        { en: "Chongqing", zh: "重庆" }, { en: "Tianjin", zh: "天津" },
+        { en: "Qingdao", zh: "青岛" }, { en: "Xiamen", zh: "厦门" },
+        { en: "Kunming", zh: "昆明" }, { en: "Changsha", zh: "长沙" },
+        { en: "Dalian", zh: "大连" }, { en: "Harbin", zh: "哈尔滨" },
+        { en: "Zhengzhou", zh: "郑州" }, { en: "Hefei", zh: "合肥" },
+        { en: "Fuzhou", zh: "福州" }, { en: "Jinan", zh: "济南" },
+        { en: "Ningbo", zh: "宁波" }, { en: "Wuxi", zh: "无锡" },
+        { en: "Hong Kong", zh: "香港" }, { en: "Taipei", zh: "台北" },
+        { en: "Tokyo", zh: "东京" }, { en: "Seoul", zh: "首尔" },
+        { en: "Singapore", zh: "新加坡" }, { en: "London", zh: "伦敦" },
+        { en: "Paris", zh: "巴黎" }, { en: "New York", zh: "纽约" },
+        { en: "Sydney", zh: "悉尼" }
+      ];
+
+      /* Edit distance between two strings (how different they are) */
+      function levenshtein(a, b) {
+        if (a === b) return 0;
+        var m = a.length, n = b.length;
+        if (!m) return n;
+        if (!n) return m;
+        var prev = [], i, j;
+        for (j = 0; j <= n; j++) prev[j] = j;
+        for (i = 1; i <= m; i++) {
+          var cur = [i];
+          for (j = 1; j <= n; j++) {
+            cur[j] = Math.min(
+              prev[j] + 1,
+              cur[j - 1] + 1,
+              prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+            );
+          }
+          prev = cur;
+        }
+        return prev[n];
+      }
+
+      /* Find up to 3 cities closest to what the user typed */
+      function suggestCities(query) {
+        var q = query.toLowerCase();
+        var hasChinese = /[一-龥]/.test(query);
+        var scored = CITIES.map(function (c) {
+          var d;
+          if (hasChinese) {
+            d = c.zh.indexOf(query) !== -1 ? 0 : 99;
+          } else {
+            var en = c.en.toLowerCase().replace(/'/g, "");
+            d = levenshtein(q, en);
+            if (en.indexOf(q) === 0) d = Math.min(d, 1); /* prefix match */
+          }
+          return { city: c, d: d };
+        });
+        scored.sort(function (a, b) { return a.d - b.d; });
+        var limit = q.length <= 4 ? 2 : 3; /* stricter for short words */
+        var out = scored.filter(function (s) { return s.d <= limit; })
+                        .slice(0, 3)
+                        .map(function (s) { return s.city; });
+        /* Nothing close enough → offer a few popular cities instead */
+        if (out.length === 0) {
+          out = [CITIES[0], CITIES[1], CITIES[6]]; /* Beijing, Shanghai, Suzhou */
+        }
+        return out;
+      }
+
+      /* Map Chinese weather words → emoji icon */
+      function getWeatherIcon(text) {
+        if (!text) return "🌡️";
+        if (/雷/.test(text)) return "⛈️";
+        if (/雨/.test(text)) return "🌧️";
+        if (/雪/.test(text)) return "❄️";
+        if (/阴/.test(text)) return "☁️";
+        if (/云|多云/.test(text)) return "⛅";
+        if (/晴/.test(text)) return "☀️";
+        if (/雾|霾/.test(text)) return "🌫️";
+        if (/风/.test(text)) return "💨";
+        return "🌡️";
+      }
+
+      function showLoading() {
+        result.innerHTML = '<div class="weather-state weather-loading"><span class="weather-spinner" aria-hidden="true"></span>Loading…</div>';
+      }
+
+      function showError(msg, suggestions) {
+        var html = '<div class="weather-state weather-error">' + msg + "</div>";
+        if (suggestions && suggestions.length) {
+          html += '<div class="weather-suggest"><span class="weather-suggest-label">Did you mean:</span>';
+          suggestions.forEach(function (c) {
+            html +=
+              '<button type="button" class="weather-suggest-chip" data-city="' +
+              c.en + '">' + c.en + " " + c.zh + "</button>";
+          });
+          html += "</div>";
+        }
+        result.innerHTML = html;
+      }
+
+      function showWeather(data) {
+        var city = data.city || "Unknown city";
+        var temp = data.temperature !== undefined ? data.temperature : "—";
+        var weather = data.weather || "—";
+        var icon = getWeatherIcon(weather);
+
+        result.innerHTML =
+          '<div class="weather-card">' +
+            '<div class="weather-icon" aria-hidden="true">' + icon + "</div>" +
+            '<div class="weather-info">' +
+              '<div class="weather-city">' + city + "</div>" +
+              '<div class="weather-temp">' + temp + "°C</div>" +
+              '<div class="weather-cond">' + weather + "</div>" +
+            "</div>" +
+          "</div>";
+      }
+
+      function search() {
+        var city = input.value.trim();
+        if (!city) {
+          showError("Enter a city first.");
+          input.focus();
+          return;
+        }
+
+        showLoading();
+        btn.disabled = true;
+
+        var url = API_BASE + "?city=" + encodeURIComponent(city);
+        fetch(url)
+          .then(function (res) {
+            if (!res.ok) throw new Error("Network error");
+            return res.json();
+          })
+          .then(function (data) {
+            /* Response: { city, weather, temperature, humidity, wind_direction, ... } */
+            if (!data || data.temperature === undefined || !data.city) {
+              showError("Couldn't find that city. Try one of these?", suggestCities(city));
+              return;
+            }
+            showWeather(data);
+          })
+          .catch(function () {
+            showError("Couldn't find that city. Try one of these?", suggestCities(city));
+          })
+          .finally(function () {
+            btn.disabled = false;
+          });
+      }
+
+      /* Clicking a suggestion chip fills the box and searches it */
+      result.addEventListener("click", function (e) {
+        var chip = e.target.closest(".weather-suggest-chip");
+        if (chip) {
+          input.value = chip.getAttribute("data-city");
+          search();
+        }
+      });
+
+      btn.addEventListener("click", search);
+      input.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") search();
+      });
+    })();
+  </script>
+</body>
+</html>
