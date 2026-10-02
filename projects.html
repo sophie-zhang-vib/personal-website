@@ -67,31 +67,44 @@
       <p id="todoEmpty" class="todo-empty">No tasks yet — add your first one above.</p>
     </section>
 
-    <!-- Other Projects -->
-    <section class="section reveal d-4" aria-label="Other projects">
-      <div class="section-head">
-        <span class="eyebrow">More projects</span>
-        <h2>Things I've built</h2>
-      </div>
-      <div class="project-grid">
-        <article class="project-card">
-          <div class="project-cover">
-            <div class="weather-cover" aria-hidden="true">🌤️</div>
-          </div>
-          <div class="project-body">
-            <h3>Weather App</h3>
-            <p>Enter a city to see the current temperature, conditions, and a matching weather icon. Built with vanilla JavaScript and the UAPI Weather API.</p>
-            <div class="project-tags">
-              <span class="tag">HTML</span>
-              <span class="tag">CSS</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">API</span>
-            </div>
-            <a href="weather.html" class="project-link">Open app <span class="arrow">&rarr;</span></a>
-          </div>
-        </article>
-      </div>
+    <!-- Other projects -->
+    <section class="section-head reveal d-2" style="margin-top: 3.5rem;">
+      <span class="eyebrow">Things I've built</span>
+      <h2>Small tools &amp; experiments</h2>
     </section>
+
+    <div class="project-grid">
+      <a class="project-card reveal d-3" href="chat.html">
+        <div class="project-cover project-cover-emoji" aria-hidden="true"><span>&#127891;</span></div>
+        <div class="project-body">
+          <h3>AI College-Life Assistant</h3>
+          <p>Chat with a real LLM (GLM-4-Flash) for advice on study plans, courses, clubs, and internships. The API key stays private through a secure serverless backend.</p>
+          <div class="project-tags">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">AI API</span>
+            <span class="chip">Netlify</span>
+          </div>
+          <span class="project-link">Open app <span class="arrow" aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+
+      <a class="project-card reveal d-3" href="weather.html">
+        <div class="project-cover project-cover-emoji" aria-hidden="true"><span>🌤️</span></div>
+        <div class="project-body">
+          <h3>Weather App</h3>
+          <p>Look up the current weather in any city — temperature, conditions, and a matching icon, with friendly typo suggestions when a name is misspelled.</p>
+          <div class="project-tags">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">API</span>
+          </div>
+          <span class="project-link">Open app <span class="arrow" aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+    </div>
 
   </main>
 
