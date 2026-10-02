@@ -23,38 +23,13 @@
     });
   }
 
-  /* ---------- Sticky header: elevate after scrolling ---------- */
-  var nav = document.querySelector(".nav");
-
-  if (nav) {
-    var ticking = false;
-
-    function updateNav() {
-      nav.classList.toggle("scrolled", window.scrollY > 8);
-      ticking = false;
-    }
-
-    window.addEventListener(
-      "scroll",
-      function () {
-        if (!ticking) {
-          window.requestAnimationFrame(updateNav);
-          ticking = true;
-        }
-      },
-      { passive: true }
-    );
-
-    updateNav();
-  }
-
   /* ---------- Current year in footer ---------- */
   var yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  /* ---------- Contact form (front-end only) ---------- */
+  /* ---------- Contact form (saves messages to Supabase) ---------- */
   var form = document.getElementById("contactForm");
   var success = document.getElementById("formSuccess");
 
@@ -62,8 +37,31 @@
     var name = form.querySelector("#name");
     var email = form.querySelector("#email");
     var message = form.querySelector("#message");
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var note = document.getElementById("formNote");
+    var defaultNote = note ? note.textContent : "";
 
-    form.addEventListener("submit", function (e) {
+    // Separate Supabase project for contact messages.
+    // Publishable key is safe in the browser; RLS limits it to inserts.
+    var CONTACT_SUPABASE_URL = "https://quxpprslcfenhrzqfxva.supabase.co";
+    var CONTACT_SUPABASE_KEY =
+      "sb_publishable_sJ9aIaUZh6GI6Xwy-NRzhw_C3sRE4lM";
+    var contactSupabase =
+      window.supabase && window.supabase.createClient
+        ? window.supabase.createClient(
+            CONTACT_SUPABASE_URL,
+            CONTACT_SUPABASE_KEY
+          )
+        : null;
+
+    function setNote(text, isError) {
+      if (!note) return;
+      note.textContent = text;
+      if (isError) note.classList.add("error");
+      else note.classList.remove("error");
+    }
+
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       var valid = true;
@@ -85,27 +83,43 @@
 
       if (!valid) return;
 
+      if (!contactSupabase) {
+        setNote(
+          "The contact service is still loading — please wait a second and try again.",
+          true
+        );
+        return;
+      }
+
+      // Sending state
+      var originalLabel = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending…";
+      setNote(defaultNote, false);
+
+      var res = await contactSupabase.from("contacts").insert({
+        name: name.value.trim(),
+        email: email.value.trim(),
+        message: message.value.trim()
+      });
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+
+      if (res.error) {
+        setNote(
+          "Something went wrong — please try again later.",
+          true
+        );
+        return;
+      }
+
       if (success) success.classList.add("show");
       form.reset();
 
       setTimeout(function () {
         if (success) success.classList.remove("show");
       }, 5000);
-    });
-  }
-
-  /* ---------- Resume download button (demo) ---------- */
-  var downloadBtn = document.getElementById("downloadBtn");
-  if (downloadBtn) {
-    downloadBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      var original = downloadBtn.innerHTML;
-      downloadBtn.innerHTML = "&#9989; Coming soon!";
-      downloadBtn.style.pointerEvents = "none";
-      setTimeout(function () {
-        downloadBtn.innerHTML = original;
-        downloadBtn.style.pointerEvents = "";
-      }, 1800);
     });
   }
 

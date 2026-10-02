@@ -155,13 +155,6 @@ p {
   -webkit-backdrop-filter: blur(14px);
   background: rgba(245, 243, 239, 0.82);
   border-bottom: 1px solid rgba(226, 222, 213, 0.7);
-  transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.nav.scrolled {
-  background: rgba(245, 243, 239, 0.95);
-  border-bottom-color: rgba(226, 222, 213, 1);
-  box-shadow: 0 6px 20px -10px rgba(60, 54, 48, 0.25);
 }
 
 .nav-inner {
@@ -674,22 +667,8 @@ p {
   transition: transform 0.5s ease;
 }
 
-.weather-cover {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  font-size: 4rem;
-  background: linear-gradient(135deg, rgba(224,122,95,0.12), rgba(129,178,154,0.14), rgba(242,204,143,0.12));
-}
-
-.project-card:hover .project-cover img,
-.project-card:hover .weather-cover {
+.project-card:hover .project-cover img {
   transform: scale(1.06);
-}
-
-.project-card:hover .weather-cover {
-  font-size: 4.4rem;
 }
 
 .project-body {
@@ -997,172 +976,6 @@ p {
   display: none;
 }
 
-/* ---------- Weather App ---------- */
-.weather-app {
-  max-width: 520px;
-  margin: 0 auto var(--space-4);
-  background: var(--c-surface);
-  border-radius: var(--r-lg);
-  padding: 1.6rem;
-  box-shadow: var(--shadow-card);
-  border: 1px solid var(--c-line);
-}
-
-.weather-search {
-  display: flex;
-  gap: 0.6rem;
-  margin-bottom: 1.4rem;
-}
-
-.weather-input {
-  flex: 1;
-  min-width: 0;
-  font-family: var(--font-body);
-  font-size: 0.98rem;
-  color: var(--c-text);
-  background: var(--c-tint);
-  border: 1.5px solid var(--c-line);
-  border-radius: var(--r-sm);
-  padding: 0.7rem 1rem;
-  min-height: 44px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.weather-input:focus {
-  outline: none;
-  border-color: var(--c-primary);
-  box-shadow: var(--shadow-ring);
-  background: #fff;
-}
-
-.weather-search-btn {
-  flex-shrink: 0;
-  padding: 0.7rem 1.6rem;
-}
-
-.weather-result {
-  min-height: 120px;
-  display: grid;
-  place-items: center;
-}
-
-.weather-hint {
-  color: var(--c-muted);
-  font-size: 0.95rem;
-  text-align: center;
-}
-
-.weather-state {
-  font-size: 1rem;
-  color: var(--c-text-soft);
-  text-align: center;
-  padding: 1rem;
-}
-
-.weather-loading {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  justify-content: center;
-}
-
-.weather-spinner {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--c-line);
-  border-top-color: var(--c-primary);
-  border-radius: 50%;
-  animation: weather-spin 0.8s linear infinite;
-}
-
-@keyframes weather-spin {
-  to { transform: rotate(360deg); }
-}
-
-.weather-error {
-  color: var(--c-primary-deep);
-  font-weight: 600;
-}
-
-.weather-card {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  padding: 1.2rem 1.4rem;
-  background: var(--c-tint);
-  border: 1px solid var(--c-line);
-  border-radius: var(--r-md);
-  animation: fadeUp 0.35s ease both;
-}
-
-.weather-icon {
-  font-size: 3rem;
-  line-height: 1;
-}
-
-.weather-city {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  color: var(--c-text);
-  margin-bottom: 0.15rem;
-}
-
-.weather-temp {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--c-primary-deep);
-  line-height: 1.1;
-}
-
-.weather-cond {
-  font-size: 0.95rem;
-  color: var(--c-text-soft);
-  margin-top: 0.2rem;
-}
-
-.weather-back {
-  text-align: center;
-  margin-bottom: var(--space-4);
-}
-
-.weather-suggest {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  justify-content: center;
-  align-items: center;
-  padding: 0 0 1rem;
-}
-
-.weather-suggest-label {
-  font-size: 0.85rem;
-  color: var(--c-muted);
-}
-
-.weather-suggest-chip {
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 600;
-  padding: 0.3rem 0.75rem;
-  border-radius: var(--r-pill);
-  background: var(--c-tint);
-  color: var(--c-text-soft);
-  border: 1px solid var(--c-line);
-  cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-}
-
-.weather-suggest-chip:hover {
-  border-color: var(--c-primary);
-  color: var(--c-primary-deep);
-  background: #fff;
-}
-
-.weather-suggest-chip:focus-visible {
-  outline: none;
-  box-shadow: var(--shadow-ring);
-}
-
 /* ---------- Contact ---------- */
 .contact-wrap {
   display: grid;
@@ -1231,6 +1044,11 @@ p {
   color: var(--c-muted);
   margin-top: 0.5rem;
   text-align: center;
+}
+
+.form-note.error {
+  color: var(--c-primary);
+  font-weight: 600;
 }
 
 .form-success {
@@ -1388,7 +1206,323 @@ p {
   .contact-form, .contact-aside, .summary-card { padding: 1.4rem; }
   .timeline { padding-left: 1.6rem; }
   .timeline-item::before { left: -1.6rem; }
-  .weather-search { flex-direction: column; }
-  .weather-search-btn { width: 100%; }
-  .weather-card { flex-direction: column; text-align: center; gap: 0.8rem; }
+}
+
+/* ---------- AI chat assistant ---------- */
+.chat-card {
+  max-width: 720px;
+  margin: 0 auto var(--space-5);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-log {
+  height: 420px;
+  max-height: 60vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.1rem;
+  margin-bottom: 1rem;
+  background: var(--c-tint);
+  border-radius: var(--r-md);
+}
+
+.chat-msg {
+  max-width: 82%;
+  padding: 0.7rem 1rem;
+  border-radius: var(--r-md);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.chat-msg-bot {
+  align-self: flex-start;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  color: var(--c-text);
+  border-bottom-left-radius: 4px;
+}
+
+.chat-msg-user {
+  align-self: flex-end;
+  background: var(--c-primary);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-msg.is-loading {
+  color: var(--c-muted);
+  font-style: italic;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+
+.chat-input {
+  flex: 1;
+  min-width: 0;
+  resize: vertical;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--c-text);
+  background: var(--c-surface);
+  border: 1.5px solid var(--c-line);
+  border-radius: var(--r-md);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chat-input:focus {
+  border-color: var(--c-primary);
+  box-shadow: var(--shadow-ring);
+}
+
+.chat-send {
+  flex-shrink: 0;
+  padding: 0.75rem 1.5rem;
+}
+
+.chat-send:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.chat-hint {
+  margin-top: 0.55rem;
+  font-size: 0.82rem;
+  color: var(--c-muted);
+}
+
+@media (max-width: 560px) {
+  .chat-card {
+    padding: 1rem;
+  }
+  .chat-log {
+    height: 52vh;
+    padding: 0.9rem;
+  }
+  .chat-msg {
+    max-width: 92%;
+  }
+  .chat-input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .chat-send {
+    width: 100%;
+  }
+}
+
+/* ---------- Weather app ---------- */
+/* Emoji cover used by the Weather project card */
+.project-cover-emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--c-tint), var(--c-bg-soft));
+}
+
+.project-cover-emoji span {
+  font-size: 3.4rem;
+  line-height: 1;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-cover-emoji span {
+  transform: scale(1.12) rotate(-6deg);
+}
+
+/* App layout */
+.weather-wrap {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.weather-search {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.4rem;
+}
+
+.weather-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.85rem 1.1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--c-text);
+  background: var(--c-surface);
+  border: 1.5px solid var(--c-line);
+  border-radius: var(--r-pill);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.weather-input:focus {
+  border-color: var(--c-primary);
+  box-shadow: var(--shadow-ring);
+}
+
+.weather-search .btn {
+  flex-shrink: 0;
+  border-radius: var(--r-pill);
+  padding: 0.85rem 1.6rem;
+}
+
+/* Result + messages share one card */
+.weather-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  padding: 2rem;
+  text-align: center;
+}
+
+.weather-icon {
+  font-size: 4.2rem;
+  line-height: 1;
+  margin-bottom: 0.6rem;
+}
+
+.weather-city {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: var(--c-text);
+  margin-bottom: 0.2rem;
+}
+
+.weather-temp {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--c-primary);
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+
+.weather-desc {
+  color: var(--c-text-soft);
+  font-size: 1.05rem;
+}
+
+.weather-msg {
+  color: var(--c-text-soft);
+  font-size: 1rem;
+  padding: 0.4rem 0;
+}
+
+.weather-msg.error {
+  color: var(--c-primary-deep);
+}
+
+/* Loading spinner */
+.weather-spinner {
+  width: 34px;
+  height: 34px;
+  margin: 0.3rem auto 0.9rem;
+  border: 3px solid var(--c-line);
+  border-top-color: var(--c-primary);
+  border-radius: 50%;
+  animation: weather-spin 0.8s linear infinite;
+}
+
+@keyframes weather-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* City suggestion chips */
+.suggestion-label {
+  margin: 0.9rem 0 0.55rem;
+  font-size: 0.9rem;
+  color: var(--c-muted);
+}
+
+.suggestion-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.suggestion-chip {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--c-text);
+  background: var(--c-tint);
+  border: 1.5px solid var(--c-line);
+  border-radius: var(--r-pill);
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.suggestion-chip:hover {
+  border-color: var(--c-primary);
+  color: var(--c-primary-deep);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 560px) {
+  .weather-search {
+    flex-direction: column;
+  }
+  .weather-search .btn {
+    width: 100%;
+  }
+  .weather-card {
+    padding: 1.6rem 1.3rem;
+  }
+}
+
+/* ---------- Print: clean resume for Save-as-PDF ---------- */
+@media print {
+  .nav,
+  .footer,
+  .resume-actions {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+  main.container {
+    max-width: 100%;
+    padding: 0;
+  }
+  /* Scroll-reveal content must be visible on paper.
+     Note: main.js sets inline opacity:0 on .timeline-item, .skill-group,
+     etc. until they scroll into view — printing never scrolls, so an
+     !important override here is required to beat the inline style. */
+  .reveal,
+  .highlight-card,
+  .timeline-item,
+  .project-card,
+  .skill-group,
+  .summary-card,
+  .contact-form,
+  .contact-aside,
+  .section-head {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  .timeline-item,
+  .summary-card,
+  .skill-group {
+    box-shadow: none;
+    break-inside: avoid;
+  }
 }
